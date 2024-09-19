@@ -1,14 +1,22 @@
-import React from 'react';
+// App.tsx or Routes.tsx
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import OrderList from './components/OrderList.tsx';
-import './App.css';
+import CreateOrder from './components/CreateOrder.tsx';
+import EditOrder from './components/EditOrder.tsx';
+import ViewOrderDetails from './components/ViewOrderDetails.tsx';
+import React from 'react';
 
-const App: React.FC = () => {
+function App() {
   return (
-    <div className="app-container">
-      <h1 className="app-heading">Order Management System</h1>
-      <OrderList />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<OrderList />} />
+        <Route path="/create-order" element={<CreateOrder />} />
+        <Route path="/edit-order/:id" element={<EditOrder />} />
+        <Route path="/view-order/:id" element={<ViewOrderDetails />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;

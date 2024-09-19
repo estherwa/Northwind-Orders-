@@ -1,0 +1,4 @@
+2024-09-19 10:58:16.693 +03:00 [INF] Now listening on: http://localhost:5131
+2024-09-19 10:58:16.716 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-09-19 10:58:16.717 +03:00 [INF] Hosting environment: Development
+2024-09-19 10:58:16.720 +03:00 [INF] Content root path: C:\Users\esthe\Northwind-Orders-\Backend\NorthwindAPI

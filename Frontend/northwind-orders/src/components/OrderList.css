@@ -1,0 +1,26 @@
+/* OrderList.css */
+
+.order-table {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.order-table .MuiTableCell-root {
+    padding: 16px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem; /* Adjust the size as needed */
+    color: #1e88e5;   /* Change this to your desired color */
+    margin-bottom: 20px;
+}

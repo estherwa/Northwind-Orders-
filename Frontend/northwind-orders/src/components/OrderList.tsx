@@ -1,98 +1,59 @@
-// src/components/OrderList.tsx
-import React, { useState, useEffect } from 'react';
-import { Order } from '../types/Order';
-import {
-  Table, TableBody, TableCell, TableContainer,
-  TableHead, TableRow, Paper, TextField, Button
-} from '@mui/material';
-import OrderRow from './OrderRow.tsx';
-import Pagination from './Pagination.tsx';
+// components/OrderList.tsx
+import React, { useEffect, useState } from 'react';
+import { getOrders } from '../services/orderService.ts';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress } from '@mui/material';
+import './OrderList.css'; // Import custom CSS
 
 const OrderList: React.FC = () => {
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+    const [orders, setOrders] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    // Simulated fetching of orders
-    const dummyOrders: Order[] = [
-      // Dummy data here...
-    ];
-    setOrders(dummyOrders);
-  }, []);
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const data = await getOrders();
+                setOrders(data);
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-  useEffect(() => {
-    const filtered = orders.filter(order =>
-      order.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.employeeName.toLowerCase().includes(searchTerm.toLowerCase())
+        fetchOrders();
+    }, []);
+
+    if (loading) return <div className="loading"><CircularProgress /></div>;
+
+    return (
+        <div>
+            <h1>Order List</h1>
+            <TableContainer component={Paper} className="order-table">
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Employee Name</TableCell>
+                            <TableCell>Customer Name</TableCell>
+                            <TableCell>Ship Name</TableCell>
+                            <TableCell>Order Date</TableCell>
+                            <TableCell>Total Price</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {orders.map((order) => (
+                            <TableRow key={order.orderID}>
+                                <TableCell>{order.employeeName}</TableCell>
+                                <TableCell>{order.customerName}</TableCell>
+                                <TableCell>{order.shipName}</TableCell>
+                                <TableCell>{order.orderDate}</TableCell>
+                                <TableCell>{order.totalPrice}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
     );
-    setFilteredOrders(filtered);
-  }, [searchTerm, orders]);
-
-  const sortOrders = () => {
-    const sorted = [...filteredOrders].sort((a, b) => {
-      const dateA = new Date(a.orderDate).getTime();
-      const dateB = new Date(b.orderDate).getTime();
-      return sortDirection === 'asc' ? dateA - dateB : dateB - dateA;
-    });
-    setFilteredOrders(sorted);
-  };
-
-  const handleSortToggle = () => {
-    setSortDirection(prev => (prev === 'asc' ? 'desc' : 'asc'));
-    sortOrders();
-  };
-
-  const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
-  const paginatedOrders = filteredOrders.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
-  return (
-    <div>
-      <TextField
-        label="Search by customer or employee name"
-        variant="outlined"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Employee Name</TableCell>
-              <TableCell>Customer Name</TableCell>
-              <TableCell>Ship Name</TableCell>
-              <TableCell>
-                <Button onClick={handleSortToggle}>
-                  Order Date {sortDirection === 'asc' ? '↑' : '↓'}
-                </Button>
-              </TableCell>
-              <TableCell>Order Total Price</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {paginatedOrders.map((order) => (
-              <OrderRow key={order.id} order={order} />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
-    </div>
-  );
 };
 
 export default OrderList;
