@@ -26,7 +26,7 @@ const OrderList: React.FC = () => {
     if (loading) return <div className="loading"><CircularProgress /></div>;
 
     return (
-        <div>
+        <div>00
             <h1>Order List</h1>
             <TableContainer component={Paper} className="order-table">
                 <Table>

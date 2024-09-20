@@ -18,12 +18,19 @@ namespace NorthwindAPI.Controllers
         }
 
         // GET: api/Orders
-        [HttpGet]
+      [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+             var orders = await _context.Orders.ToListAsync(); 
+            return Ok(orders);
         }
 
         // Additional CRUD methods
     }
 }
+
+
+
+
+
+
