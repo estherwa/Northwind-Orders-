@@ -1,7 +1,7 @@
 // services/orderService.ts
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/orders'; // Update with your backend URL
+const API_URL = 'http://localhost:5131/api/orders'; // Update with your backend URL
 
 export const getOrders = async () => {
     try {
@@ -12,6 +12,8 @@ export const getOrders = async () => {
         throw error;
     }
 };
+
+
 
 export const createOrder = async (order: any) => {
     try {

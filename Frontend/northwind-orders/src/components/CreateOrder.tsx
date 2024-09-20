@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/orders'; // Update with your API URL
+const API_URL = 'http://localhost:5131/api/orders'; // Update with your API URL
 
 const CreateOrder: React.FC = () => {
     const [customers, setCustomers] = useState<any[]>([]);
@@ -24,10 +24,10 @@ const CreateOrder: React.FC = () => {
             try {
                 // Replace these with actual API calls
                 const [customersData, employeesData, shippersData, productsData] = await Promise.all([
-                    axios.get('http://localhost:5000/api/customers'),
-                    axios.get('http://localhost:5000/api/employees'),
-                    axios.get('http://localhost:5000/api/shippers'),
-                    axios.get('http://localhost:5000/api/products'),
+                    axios.get('http://localhost:5131/api/customers'),
+                    axios.get('http://localhost:5131/api/employees'),
+                    axios.get('http://localhost:5131/api/shippers'),
+                    axios.get('http://localhost:5131/api/products'),
                 ]);
                 setCustomers(customersData.data);
                 setEmployees(employeesData.data);

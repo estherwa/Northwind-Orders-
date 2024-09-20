@@ -16,7 +16,7 @@ namespace NorthwindAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure the model relationships, table names, etc.
+        
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/orders'; // Update with your API URL
+const API_URL = 'http://localhost:5131/api/orders'; // Update with your API URL
 
 const ViewOrderDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
