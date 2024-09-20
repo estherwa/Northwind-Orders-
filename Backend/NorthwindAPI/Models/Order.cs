@@ -4,19 +4,19 @@ namespace NorthwindAPI.Models
    public class Order
 {
     public int OrderID { get; set; }
-    public string? CustomerID { get; set; } // Nullable
-    public int? EmployeeID { get; set; } // Nullable
+    public string? CustomerID { get; set; } 
+    public int? EmployeeID { get; set; } 
     public DateTime OrderDate { get; set; }
-    public DateTime? RequiredDate { get; set; } // Nullable
-    public DateTime? ShippedDate { get; set; } // Nullable
-    public int? ShipVia { get; set; } // Nullable
+    public DateTime? RequiredDate { get; set; } 
+    public DateTime? ShippedDate { get; set; } 
+    public int? ShipVia { get; set; } 
     public decimal Freight { get; set; }
-    public string? ShipName { get; set; } // Nullable
-    public string? ShipAddress { get; set; } // Nullable
-    public string? ShipCity { get; set; } // Nullable
-    public string? ShipRegion { get; set; } // Nullable
-    public string? ShipPostalCode { get; set; } // Nullable
-    public string? ShipCountry { get; set; } // Nullable
+    public string? ShipName { get; set; } 
+    public string? ShipAddress { get; set; } 
+    public string? ShipCity { get; set; } 
+    public string? ShipRegion { get; set; } 
+    public string? ShipPostalCode { get; set; } 
+    public string? ShipCountry { get; set; } 
 }
 
 }

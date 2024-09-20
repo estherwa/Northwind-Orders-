@@ -1,7 +1,7 @@
 // services/orderService.ts
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5131/api/orders'; // Update with your backend URL
+const API_URL = 'http://localhost:5131/api/orders'; 
 
 export const getOrders = async () => {
     try {
@@ -25,4 +25,3 @@ export const createOrder = async (order: any) => {
     }
 };
 
-// Similarly, update functions for other CRUD operations

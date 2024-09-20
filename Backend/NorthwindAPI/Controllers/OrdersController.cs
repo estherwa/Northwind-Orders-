@@ -1,4 +1,3 @@
-// Controllers/OrdersController.cs
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NorthwindAPI.Data;
@@ -25,7 +24,7 @@ namespace NorthwindAPI.Controllers
             return Ok(orders);
         }
 
-        // Additional CRUD methods
+        
     }
 }
 

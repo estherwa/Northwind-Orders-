@@ -1,26 +1,30 @@
 // components/OrderList.tsx
 import React, { useEffect, useState } from 'react';
 import { getOrders } from '../services/orderService.ts';
+import { getCustomers } from '../services/customerService.ts'; // Import the getCustomers function
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress } from '@mui/material';
-import './OrderList.css'; // Import custom CSS
+import './OrderList.css';
 
 const OrderList: React.FC = () => {
     const [orders, setOrders] = useState<any[]>([]);
+    const [customers, setCustomers] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        const fetchOrders = async () => {
+        const fetchOrdersAndCustomers = async () => {
             try {
-                const data = await getOrders();
-                setOrders(data);
+                const ordersData = await getOrders();
+                const customersData = await getCustomers();
+                setOrders(ordersData);
+                setCustomers(customersData);
             } catch (error) {
-                console.error('Error fetching orders:', error);
+                console.error('Error fetching data:', error);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchOrders();
+        fetchOrdersAndCustomers();
     }, []);
 
     if (loading) return <div className="loading"><CircularProgress /></div>;
@@ -32,6 +36,7 @@ const OrderList: React.FC = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
+                            <TableCell>Order ID</TableCell>
                             <TableCell>Employee Name</TableCell>
                             <TableCell>Customer Name</TableCell>
                             <TableCell>Ship Name</TableCell>
@@ -40,15 +45,19 @@ const OrderList: React.FC = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {orders.map((order) => (
-                            <TableRow key={order.orderID}>
-                                <TableCell>{order.employeeName}</TableCell>
-                                <TableCell>{order.customerName}</TableCell>
-                                <TableCell>{order.shipName}</TableCell>
-                                <TableCell>{order.orderDate}</TableCell>
-                                <TableCell>{order.totalPrice}</TableCell>
-                            </TableRow>
-                        ))}
+                        {orders.map((order) => {
+                            const customer = customers.find(c => c.customerID === order.customerID);
+                            return (
+                                <TableRow key={order.orderID}>
+                                    <TableCell>{order.orderID}</TableCell>
+                                    <TableCell>{order.employeeName}</TableCell>
+                                    <TableCell>{customer ? customer.companyName : 'N/A'}</TableCell>
+                                    <TableCell>{order.shipName}</TableCell>
+                                    <TableCell>{order.orderDate}</TableCell>
+                                    <TableCell>{order.totalPrice}</TableCell>
+                                </TableRow>
+                            );
+                        })}
                     </TableBody>
                 </Table>
             </TableContainer>
