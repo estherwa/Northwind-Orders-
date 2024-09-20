@@ -1,0 +1,44 @@
+2024-09-20 12:50:59.025 +03:00 [INF] Now listening on: http://localhost:5131
+2024-09-20 12:50:59.057 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-09-20 12:50:59.058 +03:00 [INF] Hosting environment: Development
+2024-09-20 12:50:59.059 +03:00 [INF] Content root path: C:\Users\esthe\Northwind-Orders-\Backend\NorthwindAPI
+2024-09-20 12:51:03.285 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/api/orders - null null
+2024-09-20 12:51:03.293 +03:00 [INF] HTTP GET /api/orders responded 404 in 0.9876 ms
+2024-09-20 12:51:03.297 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/api/orders - 404 0 null 13.0138ms
+2024-09-20 12:51:03.311 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/api/orders, Response status code: 404
+2024-09-20 12:51:04.019 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/api/orders - null null
+2024-09-20 12:51:04.024 +03:00 [INF] HTTP GET /api/orders responded 404 in 0.0890 ms
+2024-09-20 12:51:04.026 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/api/orders - 404 0 null 6.0564ms
+2024-09-20 12:51:04.029 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/api/orders, Response status code: 404
+2024-09-20 12:51:04.546 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/api/orders - null null
+2024-09-20 12:51:04.566 +03:00 [INF] HTTP GET /api/orders responded 404 in 0.0487 ms
+2024-09-20 12:51:04.569 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/api/orders - 404 0 null 22.3636ms
+2024-09-20 12:51:04.579 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/api/orders, Response status code: 404
+2024-09-20 12:51:04.719 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/api/orders - null null
+2024-09-20 12:51:04.723 +03:00 [INF] HTTP GET /api/orders responded 404 in 0.0431 ms
+2024-09-20 12:51:04.726 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/api/orders - 404 0 null 6.1065ms
+2024-09-20 12:51:04.733 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/api/orders, Response status code: 404
+2024-09-20 12:51:12.586 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/api/orders - null null
+2024-09-20 12:51:12.589 +03:00 [INF] HTTP GET /api/orders responded 404 in 0.0287 ms
+2024-09-20 12:51:12.591 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/api/orders - 404 0 null 4.1919ms
+2024-09-20 12:51:12.595 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/api/orders, Response status code: 404
+2024-09-20 12:51:14.119 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/api/orders - null null
+2024-09-20 12:51:14.121 +03:00 [INF] HTTP GET /api/orders responded 404 in 0.0670 ms
+2024-09-20 12:51:14.122 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/api/orders - 404 0 null 3.7792ms
+2024-09-20 12:51:14.126 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/api/orders, Response status code: 404
+2024-09-20 12:51:17.955 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/ - null null
+2024-09-20 12:51:18.207 +03:00 [INF] HTTP GET / responded 404 in 0.0644 ms
+2024-09-20 12:51:18.209 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/ - 404 0 null 254.0185ms
+2024-09-20 12:51:18.262 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/, Response status code: 404
+2024-09-20 12:51:37.658 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/api/orders - null null
+2024-09-20 12:51:37.660 +03:00 [INF] HTTP GET /api/orders responded 404 in 0.0271 ms
+2024-09-20 12:51:37.661 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/api/orders - 404 0 null 3.6093ms
+2024-09-20 12:51:37.662 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/api/orders, Response status code: 404
+2024-09-20 12:52:07.771 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/api/orders - null null
+2024-09-20 12:52:07.778 +03:00 [INF] HTTP GET /api/orders responded 404 in 0.0526 ms
+2024-09-20 12:52:07.780 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/api/orders - 404 0 null 8.6732ms
+2024-09-20 12:52:07.784 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/api/orders, Response status code: 404
+2024-09-20 12:52:08.370 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5131/api/orders - null null
+2024-09-20 12:52:08.378 +03:00 [INF] HTTP GET /api/orders responded 404 in 0.0345 ms
+2024-09-20 12:52:08.381 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5131/api/orders - 404 0 null 10.5564ms
+2024-09-20 12:52:08.385 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5131/api/orders, Response status code: 404
