@@ -56,9 +56,10 @@ const OrderList: React.FC = () => {
     });
 
     return (
-        <div style={{ height: 450, width: '100%' }}>
+        <div style={{ height: 450, width: '100%', paddingRight: '100px' }}>
             <h1>Order List</h1>
             <DataGrid
+                style={{marginRight: '100px', marginLeft: '100px'}}
                 rows={rows}
                 columns={columns}
                 getRowId={(row) => row.orderID} // Specify the unique row ID
