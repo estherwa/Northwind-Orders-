@@ -11,7 +11,7 @@ const OrderList: React.FC = () => {
     const [orders, setOrders] = useState<any[]>([]);
     const [customers, setCustomers] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-
+    const paginationModel = { page: 0, pageSize: 5 };
     useEffect(() => {
         const fetchOrdersAndCustomers = async () => {
             try {
@@ -31,7 +31,6 @@ const OrderList: React.FC = () => {
 
     if (loading) return <div className="loading"><CircularProgress /></div>;
 
-    // Define the columns for DataGrid
     const columns: GridColDef[] = [
         { field: 'orderID', headerName: 'Order ID', width: 130, sortable: true },
         { field: 'employeeName', headerName: 'Employee Name', width: 200, sortable: true },
@@ -41,11 +40,10 @@ const OrderList: React.FC = () => {
         { field: 'totalPrice', headerName: 'Total Price', width: 150, sortable: true }
     ];
 
-    // Map the data to the rows required by DataGrid
     const rows = orders.map(order => {
         const customer = customers.find(c => c.customerID === order.customerID);
         return {
-            id: order.orderID, // DataGrid requires 'id' field for unique row identification
+            id: order.orderID, 
             orderID: order.orderID,
             employeeName: order.employeeName,
             companyName: customer ? customer.companyName : 'N/A',
@@ -63,9 +61,8 @@ const OrderList: React.FC = () => {
                 rows={rows}
                 columns={columns}
                 getRowId={(row) => row.orderID} // Specify the unique row ID
-                //disableSelectionOnClick
-                //pageSize={5} // Optional: Pagination settings
-                //rowsPerPageOptions={[5, 10, 20]}
+                pageSizeOptions={[5]}
+                initialState={{ pagination: { paginationModel } }}
                 sortingOrder={['asc', 'desc']} // Default sorting order
             />
         </div>
