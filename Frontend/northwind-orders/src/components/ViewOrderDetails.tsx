@@ -10,6 +10,15 @@ const ViewOrderDetails: React.FC = () => {
     const [order, setOrder] = useState<any>(null);
     const [message, setMessage] = useState('');
 
+    const formatDate = (dateString: string) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: '2-digit'
+        }).replace(/(\d+)(?=\w+)/, '$1th');
+    };
+
     useEffect(() => {
         const fetchOrderDetails = async () => {
             try {
@@ -34,8 +43,8 @@ const ViewOrderDetails: React.FC = () => {
                 <p><strong>Order ID:</strong> {order.id}</p>
                 <p><strong>Customer:</strong> {order.customerName}</p>
                 <p><strong>Employee:</strong> {order.employeeName}</p>
-                <p><strong>Order Date:</strong> {order.orderDate}</p>
-                <p><strong>Required Date:</strong> {order.requiredDate}</p>
+                <p><strong>Order Date:</strong> {formatDate(order.orderDate)}</p>
+                <p><strong>Required Date:</strong> {formatDate(order.requiredDate)}</p>
                 <p><strong>Shipper:</strong> {order.shipperName}</p>
                 <p><strong>Total Price:</strong> ${order.totalPrice}</p>
             </div>
