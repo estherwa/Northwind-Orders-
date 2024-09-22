@@ -1,8 +1,10 @@
 // components/OrderList.tsx
 import React, { useEffect, useState } from 'react';
 import { getOrders } from '../services/orderService.ts';
-import { getCustomers } from '../services/customerService.ts'; // Import the getCustomers function
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress } from '@mui/material';
+import { getCustomers } from '../services/customerService.ts'; 
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { CircularProgress } from '@mui/material';
+
 import './OrderList.css';
 
 const OrderList: React.FC = () => {
@@ -29,38 +31,42 @@ const OrderList: React.FC = () => {
 
     if (loading) return <div className="loading"><CircularProgress /></div>;
 
+    // Define the columns for DataGrid
+    const columns: GridColDef[] = [
+        { field: 'orderID', headerName: 'Order ID', width: 130, sortable: true },
+        { field: 'employeeName', headerName: 'Employee Name', width: 200, sortable: true },
+        { field: 'companyName', headerName: 'Customer Name', width: 200, sortable: true },
+        { field: 'shipName', headerName: 'Ship Name', width: 200, sortable: true },
+        { field: 'orderDate', headerName: 'Order Date', width: 180, sortable: true },
+        { field: 'totalPrice', headerName: 'Total Price', width: 150, sortable: true }
+    ];
+
+    // Map the data to the rows required by DataGrid
+    const rows = orders.map(order => {
+        const customer = customers.find(c => c.customerID === order.customerID);
+        return {
+            id: order.orderID, // DataGrid requires 'id' field for unique row identification
+            orderID: order.orderID,
+            employeeName: order.employeeName,
+            companyName: customer ? customer.companyName : 'N/A',
+            shipName: order.shipName,
+            orderDate: order.orderDate,
+            totalPrice: order.totalPrice
+        };
+    });
+
     return (
-        <div>
+        <div style={{ height: 450, width: '100%' }}>
             <h1>Order List</h1>
-            <TableContainer component={Paper} className="order-table">
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Order ID</TableCell>
-                            <TableCell>Employee Name</TableCell>
-                            <TableCell>Customer Name</TableCell>
-                            <TableCell>Ship Name</TableCell>
-                            <TableCell>Order Date</TableCell>
-                            <TableCell>Total Price</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {orders.map((order) => {
-                            const customer = customers.find(c => c.customerID === order.customerID);
-                            return (
-                                <TableRow key={order.orderID}>
-                                    <TableCell>{order.orderID}</TableCell>
-                                    <TableCell>{order.employeeName}</TableCell>
-                                    <TableCell>{customer ? customer.companyName : 'N/A'}</TableCell>
-                                    <TableCell>{order.shipName}</TableCell>
-                                    <TableCell>{order.orderDate}</TableCell>
-                                    <TableCell>{order.totalPrice}</TableCell>
-                                </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <DataGrid
+                rows={rows}
+                columns={columns}
+                getRowId={(row) => row.orderID} // Specify the unique row ID
+                //disableSelectionOnClick
+                //pageSize={5} // Optional: Pagination settings
+                //rowsPerPageOptions={[5, 10, 20]}
+                sortingOrder={['asc', 'desc']} // Default sorting order
+            />
         </div>
     );
 };
