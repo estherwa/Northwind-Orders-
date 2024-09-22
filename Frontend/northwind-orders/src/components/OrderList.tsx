@@ -4,7 +4,6 @@ import { getOrders } from '../services/orderService.ts';
 import { getCustomers } from '../services/customerService.ts'; 
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { CircularProgress } from '@mui/material';
-
 import './OrderList.css';
 
 const OrderList: React.FC = () => {
