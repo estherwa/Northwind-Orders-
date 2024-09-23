@@ -77,13 +77,13 @@ const CreateOrder: React.FC = () => {
                     orderDate: state.form.orderDate,
                     requiredDate: state.form.requiredDate,
                     shipperID: state.form.shipperID,
-                        "freight": 12.34,
-                        "shipName": "Ship To Name",
-                        "shipAddress": "123 Shipping St",
-                        "shipCity": "Shipping City",
-                        "shipRegion": "Shipping Region",
-                        "shipPostalCode": "12345",
-                        "shipCountry": "Shipping"
+                    shipName:  state.form.shipperID,
+                    /*"shipAddress": "123 Shipping St",
+                    "shipCity": "Shipping City",
+                    "shipRegion": "Shipping Region",
+                    "shipPostalCode": "12345",
+                    "shipCountry": "Shipping"*/
+                       
                     
                    
                 })
