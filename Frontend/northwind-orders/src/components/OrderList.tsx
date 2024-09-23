@@ -5,9 +5,11 @@ import { getCustomers } from '../services/customerService.ts';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { CircularProgress } from '@mui/material';
 import './OrderList.css';
+import { getEmployees } from '../services/employeeService.ts';
 
 const OrderList: React.FC = () => {
     const [orders, setOrders] = useState<any[]>([]);
+    const [employees, setEmployees] = useState<any[]>([]);
     const [customers, setCustomers] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const paginationModel = { page: 0, pageSize: 5 };
@@ -16,8 +18,10 @@ const OrderList: React.FC = () => {
             try {
                 const ordersData = await getOrders();
                 const customersData = await getCustomers();
+                const employeesData = await getEmployees();
                 setOrders(ordersData);
                 setCustomers(customersData);
+                setEmployees(employeesData);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
