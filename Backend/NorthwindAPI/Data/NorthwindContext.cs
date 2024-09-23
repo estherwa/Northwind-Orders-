@@ -13,14 +13,19 @@ namespace NorthwindAPI.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; } 
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; } // Corrected case
+        public DbSet<OrderDetail> OrderDetails { get; set; } 
+        public DbSet<Shipper> Shippers { get; set; }
 
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(c => c.CustomerID);
             });
+
+            modelBuilder.Entity<Shipper>().HasKey(s => s.ShipperID);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<OrderDetail>(entity =>
             {

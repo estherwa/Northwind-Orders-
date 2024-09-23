@@ -34,6 +34,6 @@ namespace NorthwindAPI.Controllers
             return CreatedAtAction(nameof(GetOrderDetails), new { id = orderDetail.OrderID }, orderDetail);
         }
 
-        // Additional CRUD methods (PUT, DELETE) can be added here...
+        
     }
 }

@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { getOrders } from '../services/orderService.ts';
 import { getCustomers } from '../services/customerService.ts'; 
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { CircularProgress } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import './OrderList.css';
 import { getEmployees } from '../services/employeeService.ts';
 import { Employee } from '../models/Employee.ts';
 import { OrderDetail } from '../models/OrderDetail.ts';
 import { getOrderDetails } from '../services/orderDetailService.ts';
+import { useNavigate } from 'react-router-dom';
 
 const OrderList: React.FC = () => {
     const [orders, setOrders] = useState<any[]>([]);
@@ -16,7 +17,9 @@ const OrderList: React.FC = () => {
     const [orderDetails, setOrderDetails] = useState<OrderDetail[]>([]);
     const [customers, setCustomers] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [open, setOpen] = useState<boolean>(false);
     const paginationModel = { page: 0, pageSize: 5 };
+    const navigate = useNavigate(); // Initialize useNavigate
     useEffect(() => {
         const fetchOrdersAndCustomers = async () => {
             try {
@@ -39,6 +42,11 @@ const OrderList: React.FC = () => {
     }, []);
 
     if (loading) return <div className="loading"><CircularProgress /></div>;
+
+    const handleOpen = () => {
+        navigate('/create-order');
+        
+    };
 
     const columns: GridColDef[] = [
         { field: 'orderID', headerName: 'Order ID', width: 130, sortable: true },
@@ -69,6 +77,20 @@ const OrderList: React.FC = () => {
     return (
         <div style={{ height: 450, width: '100%', paddingRight: '100px' }}>
             <h1>Order List</h1>
+            <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={handleOpen}
+                style={{
+                position: 'absolute',
+                bottom: '30px', // Adjust the vertical position as needed
+                right: '20px', // Adjust the horizontal position as needed
+                }}
+            >
+                Create New Order
+            </Button>
+            </div>
             <DataGrid
                 style={{marginRight: '100px', marginLeft: '100px'}}
                 rows={rows}
