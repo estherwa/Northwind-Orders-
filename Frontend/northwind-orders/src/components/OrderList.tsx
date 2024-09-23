@@ -6,10 +6,11 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { CircularProgress } from '@mui/material';
 import './OrderList.css';
 import { getEmployees } from '../services/employeeService.ts';
+import { Employee } from '../models/Employee.ts';
 
 const OrderList: React.FC = () => {
     const [orders, setOrders] = useState<any[]>([]);
-    const [employees, setEmployees] = useState<any[]>([]);
+    const [employees, setEmployees] = useState<Employee[]>([]);
     const [customers, setCustomers] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const paginationModel = { page: 0, pageSize: 5 };
@@ -45,10 +46,11 @@ const OrderList: React.FC = () => {
 
     const rows = orders.map(order => {
         const customer = customers.find(c => c.customerID === order.customerID);
+        const employee = employees.find(e => e.employeeID === order.employeeID); 
         return {
             id: order.orderID, 
             orderID: order.orderID,
-            employeeName: order.employeeName,
+            employeeName: employee ? employee.firstName : 'N/A',
             companyName: customer ? customer.companyName : 'N/A',
             shipName: order.shipName,
             orderDate: order.orderDate,
