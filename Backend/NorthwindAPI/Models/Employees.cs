@@ -4,6 +4,7 @@ namespace NorthwindAPI.Models
 {
     public class Employee
     {
+
        public int EmployeeID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -18,7 +19,7 @@ namespace NorthwindAPI.Models
         public string Country { get; set; }
         public string HomePhone { get; set; }
         public string Extension { get; set; }
-        public string? Photo { get; set; } // Nullable, if stored as string
+        public byte[]? Photo { get; set; } // Nullable// Nullable, if stored as string
         public string? Notes { get; set; } // Nullable
         public int? ReportsTo { get; set; } // Nullable
         public string? PhotoPath { get; set; } // Nullable
