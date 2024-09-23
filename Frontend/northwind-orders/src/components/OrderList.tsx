@@ -94,6 +94,7 @@ const OrderList: React.FC = () => {
             <DataGrid
                 style={{marginRight: '238px', marginLeft: '238px'}}
                 rows={rows}
+                onRowClick={(params: any) => navigate(`/edit-order/${params.row.orderID}`)}
                 columns={columns}
                 getRowId={(row) => row.orderID} 
                 pageSizeOptions={[5]}
