@@ -75,7 +75,7 @@ const OrderList: React.FC = () => {
     });
 
     return (
-        <div style={{ height: 450, width: '100%', paddingRight: '100px' }}>
+        <div style={{ height: 450, width: '100%', paddingRight: '200px' }}>
             <h1>Order List</h1>
             <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
             <Button
@@ -84,21 +84,21 @@ const OrderList: React.FC = () => {
                 onClick={handleOpen}
                 style={{
                 position: 'absolute',
-                bottom: '30px', // Adjust the vertical position as needed
-                right: '20px', // Adjust the horizontal position as needed
+                bottom: '30px', 
+                right: '20px', 
                 }}
             >
                 Create New Order
             </Button>
             </div>
             <DataGrid
-                style={{marginRight: '100px', marginLeft: '100px'}}
+                style={{marginRight: '238px', marginLeft: '238px'}}
                 rows={rows}
                 columns={columns}
-                getRowId={(row) => row.orderID} // Specify the unique row ID
+                getRowId={(row) => row.orderID} 
                 pageSizeOptions={[5]}
                 initialState={{ pagination: { paginationModel } }}
-                sortingOrder={['asc', 'desc']} // Default sorting order
+                sortingOrder={['asc', 'desc']} 
             />
         </div>
     );
