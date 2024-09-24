@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Order Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
+The Order Management System is a full-stack web application designed to facilitate efficient order management. It allows users to view, create, edit, and delete orders, providing a seamless experience for managing order-related data. The system is built with a modern tech stack that ensures scalability, maintainability, and responsiveness.
 
-## Available Scripts
+## Frontend Technologies
+    1. React: A JavaScript library for building user interfaces, allowing for the creation of reusable UI components and efficient rendering of dynamic data.
+    2. Material-UI: A popular React UI framework that provides pre-built components and a design system to create a visually appealing and responsive user interface.
 
-In the project directory, you can run:
+    3. React Router: A library for routing in React applications, enabling smooth navigation between different pages without refreshing the entire application.
+## Backend Technologies
+    1. .NET Core 6: A cross-platform framework for building modern web applications and APIs. It provides robust performance and scalability for handling API requests.
+    2. Entity Framework: An object-relational mapper (ORM) that simplifies data access in .NET applications by allowing developers to work with data using .NET objects.
+    3.  SQL Server: A relational database management system (RDBMS) used to store and manage order data efficiently. The database is accessed through stored procedures for optimal performance and security.
+## Development and Deployment Technologies
 
-### `npm start`
+1. Docker: A platform that enables developers to automate the deployment of applications inside lightweight containers, ensuring consistent environments across development and production.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. SQL Server Management Studio (SSMS): A powerful tool for managing SQL Server instances, allowing developers to query, design, and manage databases with ease.
+Project Workflow
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Development Environment Setup: The project is set up using Docker for SQL Server to ensure a consistent database environment. Developers can easily pull the Docker image and run a local SQL Server instance.
 
-### `npm test`
+## Frontend and Backend Development:
+ The frontend is developed using React, leveraging Material-UI for styling. The backend is built with .NET Core, using Entity Framework for data access and SQL Server for persistent storage.
+ API Integration: The frontend communicates with the backend API to fetch and manipulate order data. This architecture separates concerns, allowing for a modular approach to development.
+## Responsive Design:
+ Material-UI ensures the application is responsive, providing a good user experience across different devices and screen sizes.
+Conclusion
+This project not only showcases the capabilities of the chosen technologies but also demonstrates best practices in full-stack development. It serves as a solid foundation for building scalable order management solutions and can be further extended with additional features such as user authentication, advanced filtering, and reporting.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Setup Instructions
 
-### `npm run build`
+### Prerequisites
+- Node.js (v14 or later)
+- npm (v6 or later)
+- A running backend server on port `5131` that handles API requests.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone <https://github.com/estherwa/Northwind-Orders->
+   cd order-management-system
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Running the Project
+1. Start the application:
+   ```bash
+        npm run start to run the frontend application  - go to folder Frontend northwind orders press open integarted terminal and npm run start
 
-### `npm run eject`
+        dotnet run to run the backend application  - go to folder Backend NorthwindAPI  press open integarted terminal and dotnet run
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Open your browser and navigate to `http://localhost:3000`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Assumptions, Notes, and Design Decisions
+- The backend API is assumed to be running and accessible at `http://localhost:5131`.
+- The application utilizes React Router for navigation between different pages.
+- Material-UI is used for styling and components to ensure a responsive and modern design.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Feature Completion
+- [x] Order List Page -- done
+- [x] Create New Order Page --done
+- [x] Edit Order Page  --done
+- [x] View Order Details Page --done
+- [x] Delete Order functionality --done
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Necessary Scripts
+- Ensure the following scripts are included in your `package.json`:
+  ```json
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+  ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Port Information
+- The frontend runs on port `3000`.
+- The backend API runs on port `5131`.
+ - SQL Server runs on port 1433 (default).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
