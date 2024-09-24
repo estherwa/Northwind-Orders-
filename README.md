@@ -1,6 +1,8 @@
 # Order Management System
  ![Form](Northwind-Orders-/Frontend\northwind-orders/public/demo.png)
-Frontend/northwind-orders/public/demo.png
+  ![Form](Frontend/northwind-orders/public/demo.png)
+    ![Form](Northwind-Orders-/Frontend/northwind-orders/public/demo.png)
+
 
 ## Project Overview
 The Order Management System is a full-stack web application designed to facilitate efficient order management. It allows users to view, create, edit, and delete orders, providing a seamless experience for managing order-related data. The system is built with a modern tech stack that ensures scalability, maintainability, and responsiveness.
