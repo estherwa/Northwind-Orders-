@@ -1,5 +1,5 @@
 # Order Management System
- ![Form](\Northwind-Orders-\Frontend\northwind-orders\public\demo.png)
+ ![Form](/Northwind-Orders-/Frontend\northwind-orders/public/demo.png)
 
 
 ## Project Overview
