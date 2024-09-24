@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Container, Grid, Typography } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OrderDetail } from '../models/OrderDetail';
 
-
-
-const EditOrder: React.FC<any> = ({ }) => {
+const EditOrder: React.FC<any> = () => {
   const [order, setOrder] = useState<any | null>(null);
   const [orderDetails, setOrderDetails] = useState<any[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
+
   useEffect(() => {
-    // Fetch the existing order details to pre-fill
     const fetchOrder = async () => {
-      const response = await fetch(`/api/orders/${id}`);
+      const response = await fetch(`http://localhost:5131/api/orders/${id}`);
       const data = await response.json();
+      console.log({ data });
       setOrder(data);
       setOrderDetails(data.orderDetails);
     };
 
     fetchOrder();
-  }, []);
+  }, [id]);
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,24 +28,8 @@ const EditOrder: React.FC<any> = ({ }) => {
     }
   };
 
-  const handleOrderDetailChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const updatedOrderDetails = [...orderDetails];
-    updatedOrderDetails[index] = { ...updatedOrderDetails[index], [name]: value };
-    setOrderDetails(updatedOrderDetails);
-  };
-
-  const addOrderDetail = () => {
-    setOrderDetails([...orderDetails, { productID: 0, unitPrice: 0, quantity: 0, discount: 0 }]);
-  };
-
-  const removeOrderDetail = (index: number) => {
-    const updatedOrderDetails = orderDetails.filter((_, i) => i !== index);
-    setOrderDetails(updatedOrderDetails);
-  };
-
   const handleSubmit = async () => {
-    const response = await fetch(`/api/orders/${id}`, {
+    const response = await fetch(`http://localhost:5131/api/orders/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...order, orderDetails }),
@@ -71,95 +53,81 @@ const EditOrder: React.FC<any> = ({ }) => {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   if (!order) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h2>Edit Order</h2>
+    <Container maxWidth="md" style={{ marginTop: '2rem' }}>
+      <Typography variant="h4" gutterBottom>
+        Edit Order
+      </Typography>
       <form>
-        <TextField
-          label="Customer ID"
-          name="customerID"
-          value={order.customerID}
-          onChange={handleFieldChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Employee ID"
-          name="employeeID"
-          value={order.employeeID}
-          onChange={handleFieldChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Order Date"
-          name="orderDate"
-          type="date"
-          value={order.orderDate}
-          onChange={handleFieldChange}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{ shrink: true }}
-        />
-        <TextField
-          label="Required Date"
-          name="requiredDate"
-          type="date"
-          value={order.requiredDate}
-          onChange={handleFieldChange}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{ shrink: true }}
-        />
-        {/* Order Details */}
-        {orderDetails.map((detail, index) => (
-          <div key={index}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
             <TextField
-              label="Product ID"
-              name="productID"
-              value={detail.productID}
-              onChange={(e) => handleOrderDetailChange(index, e)}
+              label="Customer ID"
+              name="customerID"
+              value={order.customerID}
+              onChange={handleFieldChange}
               fullWidth
               margin="normal"
             />
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <TextField
-              label="Unit Price"
-              name="unitPrice"
-              value={detail.unitPrice}
-              onChange={(e) => handleOrderDetailChange(index, e)}
+              label="Employee ID"
+              name="employeeID"
+              value={order.employeeID}
+              onChange={handleFieldChange}
               fullWidth
               margin="normal"
             />
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <TextField
-              label="Quantity"
-              name="quantity"
-              value={detail.quantity}
-              onChange={(e) => handleOrderDetailChange(index, e)}
+              label="Order Date"
+              name="orderDate"
+              type="date"
+              value={order.orderDate.split('T')[0]}
+              onChange={handleFieldChange}
+              fullWidth
+              margin="normal"
+              InputLabelProps={{ shrink: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Required Date"
+              name="requiredDate"
+              type="date"
+              value={order.requiredDate.split('T')[0]}
+              onChange={handleFieldChange}
+              fullWidth
+              margin="normal"
+              InputLabelProps={{ shrink: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Ship Name"
+              name="shipName"
+              value={order.shipName}
+              onChange={handleFieldChange}
               fullWidth
               margin="normal"
             />
-            <TextField
-              label="Discount"
-              name="discount"
-              value={detail.discount}
-              onChange={(e) => handleOrderDetailChange(index, e)}
-              fullWidth
-              margin="normal"
-            />
-            <Button onClick={() => removeOrderDetail(index)} color="secondary">
-              Remove Order Detail
-            </Button>
-          </div>
-        ))}
+          </Grid>
+        </Grid>
 
-        <Button onClick={addOrderDetail} color="primary">
-          Add Order Detail
+        <Button variant="contained" color="primary" onClick={handleConfirmDialog} style={{ marginTop: '1rem', marginRight: '1rem' }}>
+          Save Changes
         </Button>
 
-        <Button variant="contained" color="primary" onClick={handleConfirmDialog}>
-          Save Changes
+        <Button variant="outlined" color="secondary" onClick={handleGoBack} style={{ marginTop: '1rem' }}>
+          Go Back
         </Button>
       </form>
 
@@ -176,7 +144,7 @@ const EditOrder: React.FC<any> = ({ }) => {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Container>
   );
 };
 

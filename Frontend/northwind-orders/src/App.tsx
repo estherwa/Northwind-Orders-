@@ -1,10 +1,10 @@
 // App.tsx or Routes.tsx
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import OrderList from './components/OrderList.tsx';
 import CreateOrder from './components/CreateOrder.tsx';
 import EditOrder from './components/EditOrder.tsx';
-import ViewOrderDetails from './components/ViewOrderDetails.tsx';
-import React from 'react';
+import ViewOrderDetails from './components/ViewOrderDetail.tsx';
 
 function App() {
   return (

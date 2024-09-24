@@ -1,4 +1,3 @@
-// components/OrderList.tsx
 import React, { useEffect, useState } from 'react';
 import { getOrders } from '../services/orderService.ts';
 import { getCustomers } from '../services/customerService.ts'; 
@@ -20,6 +19,7 @@ const OrderList: React.FC = () => {
     const [open, setOpen] = useState<boolean>(false);
     const paginationModel = { page: 0, pageSize: 5 };
     const navigate = useNavigate(); // Initialize useNavigate
+
     useEffect(() => {
         const fetchOrdersAndCustomers = async () => {
             try {
@@ -45,7 +45,24 @@ const OrderList: React.FC = () => {
 
     const handleOpen = () => {
         navigate('/create-order');
-        
+    };
+
+    const handleEdit = (orderId: number) => {
+        navigate(`/edit-order/${orderId}`);
+    };
+
+    const handleDelete = async (orderId: number) => {
+        const confirmDelete = window.confirm(`Are you sure you want to delete order with ID: ${orderId}?`);
+        if (confirmDelete) {
+            try {
+                await fetch(`api/orders/${orderId}`, {
+                    method: 'DELETE',
+                });
+                setOrders(orders.filter(order => order.orderID !== orderId));
+            } catch (error) {
+                console.error('Error deleting order:', error);
+            }
+        }
     };
 
     const columns: GridColDef[] = [
@@ -54,7 +71,37 @@ const OrderList: React.FC = () => {
         { field: 'companyName', headerName: 'Customer Name', width: 200, sortable: true },
         { field: 'shipName', headerName: 'Ship Name', width: 200, sortable: true },
         { field: 'orderDate', headerName: 'Order Date', width: 180, sortable: true },
-        { field: 'totalPrice', headerName: 'Total Price', width: 150, sortable: true }
+        { field: 'totalPrice', headerName: 'Total Price', width: 150, sortable: true },
+        {
+            field: 'edit',
+            headerName: 'Edit',
+            width: 100,
+            renderCell: (params) => (
+                <Button
+                    onClick={() => handleEdit(params.row.orderID)}
+                    variant="text"
+                    color="primary"
+                    startIcon={<span role="img" aria-label="edit">✏️</span>}
+                >
+                   
+                </Button>
+            ),
+        },
+        {
+            field: 'delete',
+            headerName: 'Delete',
+            width: 100,
+            renderCell: (params) => (
+                <Button
+                    onClick={() => handleDelete(params.row.orderID)}
+                    variant="text"
+                    color="secondary"
+                    startIcon={<span role="img" aria-label="delete">🗑️</span>}
+                >
+
+                </Button>
+            ),
+        },
     ];
 
     const rows = orders.map(order => {
@@ -78,26 +125,26 @@ const OrderList: React.FC = () => {
         <div style={{ height: 450, width: '100%', paddingRight: '200px' }}>
             <h1>Order List</h1>
             <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handleOpen}
-                style={{
-                position: 'absolute',
-                bottom: '30px', 
-                right: '20px', 
-                }}
-            >
-                Create New Order
-            </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleOpen}
+                    style={{
+                        position: 'absolute',
+                        bottom: '30px', 
+                        right: '20px', 
+                    }}
+                >
+                    Create New Order
+                </Button>
             </div>
             <DataGrid
-                style={{marginRight: '238px', marginLeft: '238px'}}
+                style={{ marginRight: '140px', marginLeft: '140px' }}
                 rows={rows}
-                onRowClick={(params: any) => navigate(`/edit-order/${params.row.orderID}`)}
                 columns={columns}
-                getRowId={(row) => row.orderID} 
                 pageSizeOptions={[5]}
+                onRowClick={(params: any) => navigate(`/view-order/${params.row.orderID}`, { state: { order: params.row } })}
+                getRowId={(row) => row.orderID} 
                 initialState={{ pagination: { paginationModel } }}
                 sortingOrder={['asc', 'desc']} 
             />

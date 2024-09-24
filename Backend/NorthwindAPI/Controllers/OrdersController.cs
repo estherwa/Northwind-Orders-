@@ -20,8 +20,22 @@ namespace NorthwindAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            var orders = await _context.Orders.ToListAsync(); 
+            var orders = await _context.Orders.ToListAsync();
             return Ok(orders);
+        }
+
+        // GET: api/Orders/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Order>> GetOrder(int id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(order);
         }
 
         // POST: api/Orders
@@ -33,5 +47,65 @@ namespace NorthwindAPI.Controllers
 
             return CreatedAtAction(nameof(GetOrders), new { id = order.OrderID }, order);
         }
+
+        // PUT: api/Orders/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutOrder(int id, Order order)
+        {
+            if (id != order.OrderID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(order).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!OrderExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private bool OrderExists(int id)
+        {
+            return _context.Orders.Any(e => e.OrderID == id);
+        }
+
+
+          // DELETE: api/Orders/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOrder(int id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            _context.Orders.Remove(order);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool OrderExists(int id)
+        {
+            return _context.Orders.Any(e => e.OrderID == id);
+        }
+    
+    
+
     }
 }

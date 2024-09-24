@@ -1,0 +1,31 @@
+.container {
+    margin-top: 2rem;
+}
+
+.card {
+    margin-bottom: 6.5rem;
+}
+
+h6 {
+    font-weight: bold;
+    margin-bottom: 0.9rem;
+    border-bottom: 2px solid #1976d2; /* Blue underline for clarity */
+    padding-bottom: 0.5rem;
+}
+
+button {
+    display: block;
+    margin: 3rem auto; /* Center the button */
+}
+
+.typography {
+    margin-bottom: 4rem; /* Space between text elements */
+}
+
+/* Optional: Add a background color for the container */
+.container {
+    background-color: #f9f9f9; /* Light background */
+    padding: 2rem; /* Add padding around the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 4 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
