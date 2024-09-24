@@ -36,7 +36,6 @@ This project not only showcases the capabilities of the chosen technologies but 
 ## Project Setup Instructions
 
 ### Prerequisites
-- Node.js (v14 or later)
 - npm (v6 or later)
 - A running backend server on port `5131` that handles API requests.
 
