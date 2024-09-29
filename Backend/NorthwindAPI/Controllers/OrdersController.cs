@@ -83,8 +83,7 @@ namespace NorthwindAPI.Controllers
             return _context.Orders.Any(e => e.OrderID == id);
         }
 
-
-          // DELETE: api/Orders/{id}
+        // DELETE: api/Orders/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
@@ -99,13 +98,5 @@ namespace NorthwindAPI.Controllers
 
             return NoContent();
         }
-
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.OrderID == id);
-        }
-    
-    
-
     }
 }

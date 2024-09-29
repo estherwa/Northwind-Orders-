@@ -18,7 +18,7 @@ const OrderList: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [open, setOpen] = useState<boolean>(false);
     const paginationModel = { page: 0, pageSize: 5 };
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const fetchOrdersAndCustomers = async () => {
