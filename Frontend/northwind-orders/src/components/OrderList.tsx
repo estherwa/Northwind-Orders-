@@ -47,11 +47,14 @@ const OrderList: React.FC = () => {
         navigate('/create-order');
     };
 
-    const handleEdit = (orderId: number) => {
+    const handleEdit = (orderId: number, event: React.MouseEvent) => {
+        event.stopPropagation();
         navigate(`/edit-order/${orderId}`);
     };
+    
 
-    const handleDelete = async (orderId: number) => {
+    const handleDelete = async (orderId: number,  event: React.MouseEvent) => {
+        event.stopPropagation();
         const confirmDelete = window.confirm(`Are you sure you want to delete order with ID: ${orderId}?`);
         if (confirmDelete) {
             try {
@@ -78,7 +81,7 @@ const OrderList: React.FC = () => {
             width: 100,
             renderCell: (params) => (
                 <Button
-                    onClick={() => handleEdit(params.row.orderID)}
+                    onClick={(event) => handleEdit(params.row.orderID, event)}
                     variant="text"
                     color="primary"
                     startIcon={<span role="img" aria-label="edit">✏️</span>}
@@ -93,7 +96,7 @@ const OrderList: React.FC = () => {
             width: 100,
             renderCell: (params) => (
                 <Button
-                    onClick={() => handleDelete(params.row.orderID)}
+                    onClick={(event) => handleDelete(params.row.orderID,event)}
                     variant="text"
                     color="secondary"
                     startIcon={<span role="img" aria-label="delete">🗑️</span>}
